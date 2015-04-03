@@ -35,7 +35,9 @@ Before attempting this project, please:
 1. Read and understand these directions in full.
 2. Read the `Main` class and familiarize yourself with its contents.  This will be the starting point for your code.
 3. Browse the other classes that are provided, and read the Javadoc comments that explain how to use each method.
+4. Figure out what your project will look like.  Divide 
 
+Please email Nathan and Alex Qin the link to your team's github repo.  The course team will evaluate your project based on the contents of the repo.  Each team will also demo its project in front of the whole group.
 
 
 
@@ -100,7 +102,7 @@ All code that you write for this project should be reviewed by at least one othe
 
 We have provided for you the libraries you need to solve this problem.  The individual components are explained below.
 
-As in previous assignments, the classes we provide for you contain method comments
+As in previous assignments, the classes we provide for you contain comments for each method that describe how to use the method.  Make sure you read and understand these.  (Methods marked `private`
 
 The `Main` class contains sample code to get you started.  You should add your logic to this class, but feel free to add additional classes to organize your code.
 
@@ -119,6 +121,8 @@ To draw the display, you will use code from the _singboard_ project.  Rather tha
 Your program should create one `AnsiTerminal` instance, and call its methods throughout to draw on the screen.  Unlike the `SignBoard`, the screen is not cleared unless you request it by calling the `clear()` method.
 
 The `Main` class includes some simple code that demonstrates how to use `AnsiTerminal` to draw a very simple clock that updates once a second.
+
+Feel free to use unusual symbols from the [Unicode code charts](http://www.unicode.org/charts/) to enahnce your display, but make sure the symbols work correctly in your terminal.  Not every font can display each symbol.    
 
 
 ### Date and time
@@ -211,6 +215,4 @@ If your team completes the above, choose one or more features from the following
 
 - Show the phase of the moon.  The method for calculating this is quite complicated, but there are a number of Java implementations on the web that you can use, including [this one](https://code.google.com/p/moonphase/source/browse/trunk/Moon/MoonPhase.java?r=12).
   
-
-
 
