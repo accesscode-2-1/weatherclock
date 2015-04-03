@@ -138,6 +138,29 @@ The `DateTools` class is now called `DateTime`.  We've added some additonal meth
 **Important:** `DST.getDSTDates()` and `Holidays.getHolidays()` both expect to find their respective input files in the current directory, which is in the top of the project.  You will have to be in this directory when you run your program for these methods to work correctly.
 
 
+### JSON parsing
+
+You'll use a JSON library [json-simple](https://code.google.com/p/json-simple/) to parse / decode the weather data (see below).  To understand how to use this, see [this example](https://code.google.com/p/json-simple/wiki/DecodingExamples) and the [API documentation](http://alex-public-doc.s3.amazonaws.com/json_simple-1.1/index.html).
+
+Note the following when parsing JSON:
+
+- The JSON document doesn't specify types.  You'll have to cast objects appropriately.  For example, suppose you have a JSON object that contains a key "data".  If you know that the value should be a long value, use,
+
+  ```java
+  long value = (Long) obj.get("data")
+  ```
+  
+  whereas if you know it should be another JSON object, use,
+  
+  ```java
+  JSONObject value = (JSONObject) obj.get("data")
+  ```
+  
+- _Always_ check whether the result of `get()` is `null`.
+
+This library's JAR file is included in this repo and set up int the IntelliJ project.
+
+
 ### Weather data
 
 You will obtain weather data from the [OpenWeatherMap API](http://openweathermap.org/api).  This is a simple API in which you request current weather data with a single HTTP GET request. The response is a JSON document, which contains current weather data and other useful information.
