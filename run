@@ -1,0 +1,12 @@
+#!/bin/bash
+
+dir=$(dirname $0)
+classdir=$dir/out/production/weatherclock
+if ! [[ -d $classdir ]]; then
+  echo "missing $classdir; have you compiled your code?" >&2
+  exit 1
+fi
+
+export CLASSPATH=$classdir:lib/json_simple-1.1.jar
+exec java nyc.c4q.ac21.weatherclock.Main
+
