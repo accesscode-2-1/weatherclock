@@ -35,9 +35,13 @@ Before attempting this project, please:
 1. Read and understand these directions in full.
 2. Read the `Main` class and familiarize yourself with its contents.  This will be the starting point for your code.
 3. Browse the other classes that are provided, and read the Javadoc comments that explain how to use each method.
-4. Figure out what your project will look like.  Divide 
+4. Figure out what your project will look like.  Divide up the work and figure out how you will organize your code.
 
 Please email Nathan and Alex Qin the link to your team's github repo.  The course team will evaluate your project based on the contents of the repo.  Each team will also demo its project in front of the whole group.
+
+As always, the instructors and TAs are here to help you if you get stuck.  In general, please post your questions to one of the #channels instead of @direct messages so that other students can help you and benefit from the answers.
+
+_Have fun!_
 
 
 
