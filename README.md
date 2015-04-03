@@ -26,6 +26,19 @@ Here's a simplified example of what the display might look like.
 Your display will be more elborate, will show more information, and employ color and animation.
 
 
+## Instructions
+
+Each team should fork this repository, as always.
+
+Before attempting this project, please:
+
+1. Read and understand these directions in full.
+2. Read the `Main` class and familiarize yourself with its contents.  This will be the starting point for your code.
+3. Browse the other classes that are provided, and read the Javadoc comments that explain how to use each method.
+
+
+
+
 ## Features
 
 First, your weather clock should display **all** of the following information for New York City:
@@ -65,6 +78,8 @@ Second, your team should choose **three** of the following features, and impleme
 
 - Ask the user to select (at startup) an alarm time, and display a dramatic visual alarm at that time.
 
+This is an open-ended project, and these requirements are not specified in detail.  Where the requirements aren't clear, it's up to you to decide what to implement to produce the best possible product.
+
 The **Challenges** section at the end of this document gives ideas for more advanced features, which your team may choose to implement as well.
 
 
@@ -88,6 +103,8 @@ We have provided for you the libraries you need to solve this problem.  The indi
 As in previous assignments, the classes we provide for you contain method comments
 
 The `Main` class contains sample code to get you started.  You should add your logic to this class, but feel free to add additional classes to organize your code.
+
+As with the signboard project, your program must be run from the terminal to display correctly.  A `run` script is provided to do this for you; invoke it as `./run` from the terminal after changing directory to the top of your project.
 
 
 ## Technology
@@ -116,6 +133,8 @@ The `DateTools` class is now called `DateTime`.  We've added some additonal meth
 ### Weather data
 
 You will obtain weather data from the [OpenWeatherMap API](http://openweathermap.org/api).  This is a simple API in which you request current weather data with a single HTTP GET request. The response is a JSON document, which contains current weather data and other useful information.
+
+**Important:** Do not try to call this API very rapidly, for instance every second.  It will slow down your program unacceptably.
 
 For example, this URI:
 
