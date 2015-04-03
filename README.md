@@ -89,7 +89,7 @@ Your team's project will be evaluated on these criteria:
 
 1. **Functionality:** Does the program run correctly and produce correct results?
 
-2. **Display:** Does the program produce a neat and attractive display, making good use of colors and animation?  Does it run correctly regardless of the terminal size?  
+2. **Display:** Does the program produce a neat and attractive display, making good use of colors and animation?  Does it run correctly regardless of the terminal size?  A good display requires both artisitic creativity and careful implementation.
 
 3. **Code quality:** Is your code neat and easy to understand?  Have you included code comments that explain each section?
 
