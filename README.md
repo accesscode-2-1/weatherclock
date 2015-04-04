@@ -106,7 +106,7 @@ All code that you write for this project should be reviewed by at least one othe
 
 We have provided for you the libraries you need to solve this problem.  The individual components are explained below.
 
-As in previous assignments, the classes we provide for you contain comments for each method that describe how to use the method.  Make sure you read and understand these.  (Methods marked `private`
+As in previous assignments, the classes we provide for you contain comments for each method that describe how to use the method.  Make sure you read and understand these.  (Methods marked `private` are internal to the class; you do not have to understand how these work, if you don't wish to)
 
 The `Main` class contains sample code to get you started.  You should add your logic to this class, but feel free to add additional classes to organize your code.
 
@@ -147,16 +147,24 @@ Note the following when parsing JSON:
 - The JSON document doesn't specify types.  You'll have to cast objects appropriately.  For example, suppose you have a JSON object that contains a key "data".  If you know that the value should be a long value, use,
 
   ```java
-  long value = (Long) obj.get("data")
+  Long value = (Long) obj.get("data");
   ```
   
   whereas if you know it should be another JSON object, use,
   
   ```java
-  JSONObject value = (JSONObject) obj.get("data")
+  JSONObject value = (JSONObject) obj.get("data");
   ```
   
-- _Always_ check whether the result of `get()` is `null`.
+- _Always_ check whether the result of `get()` is `null`.  For this reason, it's best not to unbox `long` and other types directly.
+
+  ```java
+  Long valueObj = (Long) obj.get("data");
+  if (valueObj != null) {
+      long value = valueObj;
+      // ...
+  }
+  ```
 
 This library's JAR file is included in this repo and set up int the IntelliJ project.
 
