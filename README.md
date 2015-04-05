@@ -235,7 +235,7 @@ In order to use this, you will,
 3. Use `JSONValue.parse()` to parse the document to a JSON object.
 4. Use the `get()` method to extract the component you need.
 
-You may have to convert units as well, for instance temperatures.  The units used in the JSON document are explained [in the weather documentation](http://openweathermap.org/weather-data#current).  The JSON document specifies times as "UNIX timestamps"; we've provided a method `DateTime.fromTimestamp()` to convert this to a calendar.  Use Google to find forumlas for converting from Kelvin to Farenheit or Celcius, and from hPa to inches of Mercury.
+You may have to convert units as well, for instance temperatures.  The units used in the JSON document are explained [in the weather documentation](http://openweathermap.org/weather-data#current).  The JSON document specifies times as "UNIX timestamps"; we've provided a method `DateTime.fromTimestamp()` to convert this to a calendar.  Use Google to find forumlas for converting from kelvins to degrees Farenheit or Celcius, and from hPa to inches of mercury.
 
 
 ## Challenges
