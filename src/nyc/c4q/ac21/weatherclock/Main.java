@@ -110,7 +110,7 @@ public class Main {
             // Set the background color back to black.
             terminal.setBackgroundColor(AnsiTerminal.Color.BLACK);
 
-            //Write sunrise time in red.
+            //Marbella :Write sunrise time in red.
             String sunriseTime= DateTime.formatTime(sunrise, false);
             terminal.setTextColor(AnsiTerminal.Color.WHITE,false);
             terminal.moveTo(9, xPosition - 2);
@@ -122,8 +122,11 @@ public class Main {
             terminal.moveTo(11, xPosition - 2);
             terminal.write("sunset at " + sunsetTime + " PM");
 
-
-
+            //Marbella: DST
+            Boolean isDst = DST.isDST(cal);
+            terminal.setTextColor(AnsiTerminal.Color.WHITE, false);
+            terminal.moveTo(13, xPosition - 2);
+            terminal.write("DST is " + DST.isDSTEffect(isDst));
 
             // Pause for one second, and do it again.
             DateTime.pause(1.0);
