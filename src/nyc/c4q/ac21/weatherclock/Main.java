@@ -26,6 +26,25 @@ public class Main {
     }
 
     /**
+     * Marbella: Returns sunrise time for the current day.
+     */
+
+    public static Calendar getSunrise(){
+    URL url = HTTP.stringToURL("http://api.openweathermap.org/data/2.5/weather?q=New%20York,NY");
+    String doc = HTTP.get(url);
+    JSONObject obj = (JSONObject) JSONValue.parse(doc);
+
+    JSONObject sys = (JSONObject) obj.get("sys");
+    if (sys == null)
+            return null;
+    Long sunriseTimestamp = (Long) sys.get("sunrise");
+    if (sunriseTimestamp == null)
+            return null;
+    return DateTime.fromTimestamp(sunriseTimestamp);
+}
+
+
+    /**
      * SAMPLE CODE: Displays a very primitive clock.
      */
     public static void main(String[] args) {
@@ -56,6 +75,9 @@ public class Main {
 
         // Get sunset time for the current day.
         Calendar sunset = getSunset();
+
+        //Get sunrise time for the current day.
+        Calendar sunrise = getSunrise();
 
         int xPosition = 1 + numCols / 2 - 5;
         while (true) {
@@ -88,11 +110,23 @@ public class Main {
             // Set the background color back to black.
             terminal.setBackgroundColor(AnsiTerminal.Color.BLACK);
 
+            //Marbella :Write sunrise time in red.
+            String sunriseTime= DateTime.formatTime(sunrise, false);
+            terminal.setTextColor(AnsiTerminal.Color.WHITE,false);
+            terminal.moveTo(9, xPosition - 2);
+            terminal.write("sunrise at " + sunriseTime + " AM");
+
             // Write sunset time in dark yellow.
             String sunsetTime = DateTime.formatTime(sunset, false);
             terminal.setTextColor(AnsiTerminal.Color.YELLOW, false);
-            terminal.moveTo(9, xPosition - 2);
-            terminal.write("sunset at " + sunsetTime);
+            terminal.moveTo(11, xPosition - 2);
+            terminal.write("sunset at " + sunsetTime + " PM");
+
+            //Marbella: DST
+            Boolean isDst = DST.isDST(cal);
+            terminal.setTextColor(AnsiTerminal.Color.WHITE, false);
+            terminal.moveTo(13, xPosition - 2);
+            terminal.write("DST is " + DST.isDSTEffect(isDst));
 
             // Pause for one second, and do it again.
             DateTime.pause(1.0);
