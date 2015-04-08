@@ -2,6 +2,8 @@ package nyc.c4q.ac21.weatherclock;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 
 import java.net.URL;
 import java.util.Calendar;
@@ -73,17 +75,19 @@ public class Main {
             terminal.write(time);
 
             // Write the date in gray.
-            String date = DateTime.formatDate(cal);
-            terminal.setTextColor(AnsiTerminal.Color.WHITE, false);
-            terminal.moveTo(5, xPosition);
-            terminal.write(date);
+//                String date = DateTime.formatDate(cal);
+            //                terminal.setTextColor(AnsiTerminal.Color.WHITE, false);
+            //                terminal.moveTo(5, xPosition);
+            //                terminal.write(date);
 
             // Write the day of the week in green on a blue background.
             String dayOfWeek = DateTime.getDayOfWeekNames().get(cal.get(Calendar.DAY_OF_WEEK));
             terminal.setTextColor(AnsiTerminal.Color.GREEN);
             terminal.setBackgroundColor(AnsiTerminal.Color.BLUE);
-            terminal.moveTo(7, xPosition);
-            terminal.write("  " + dayOfWeek + "  ");
+            terminal.moveTo(7, xPosition-4);
+            //
+            String date = DateTime.formatDate(cal);
+            terminal.write(dayOfWeek+", "+date);
 
             // Set the background color back to black.
             terminal.setBackgroundColor(AnsiTerminal.Color.BLACK);
@@ -96,6 +100,9 @@ public class Main {
 
             // Pause for one second, and do it again.
             DateTime.pause(1.0);
+
+            //JSONParser parser =new JSONParser();
+            //JSONObject weather_json_obj = (JSONObject)parser.parse(new FileReader("/Users/Hoshiko/Desktop/accesscode/weatherclock/json-files/weather.json"));
         }
     }
 }

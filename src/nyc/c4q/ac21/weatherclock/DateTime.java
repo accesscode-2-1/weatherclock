@@ -13,6 +13,7 @@ public class DateTime {
     public static final SimpleDateFormat TIME_FORMAT_SECS = new SimpleDateFormat("h:mm:ss");
     public static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:MM");
 
+
     /**
      * Formats a 'Calendar' object as a date.
      * @param cal
@@ -21,10 +22,16 @@ public class DateTime {
      *   The date in "YYYY-MM-DD" format.
      */
     public static String formatDate(Calendar cal) {
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
         if (cal == null)
             return null;
         else
-            return DATE_FORMAT.format(cal.getTime());
+            //return DATE_FORMAT.format(cal.getTime());
+            return year+" "+getMonthNames().get(month) + " " + day;
+
     }
 
     public static String format(Calendar cal) {
