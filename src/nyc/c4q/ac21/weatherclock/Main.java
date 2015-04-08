@@ -2,6 +2,8 @@ package nyc.c4q.ac21.weatherclock;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 
 import java.net.URL;
 import java.util.Calendar;
@@ -23,6 +25,25 @@ public class Main {
         if (sunsetTimestamp == null)
             return null;
         return DateTime.fromTimestamp(sunsetTimestamp);
+    }
+    /**
+     * Weather description by Hoshiko
+     */
+    public static String getWeatherDesc() {
+        //URL url = HTTP.stringToURL("http://api.openweathermap.org/data/2.5/weather?q=New%20York,NY");
+        URL url = HTTP.stringToURL("http://api.openweathermap.org/data/2.5/weather?id=5128581");
+        String doc = HTTP.get(url);
+        JSONObject obj = (JSONObject) JSONValue.parse(doc);
+        JSONArray weatherJSONArray = (JSONArray)obj.get("weather");
+        JSONObject weatherJSONObj = (JSONObject) weatherJSONArray.get(0);
+
+        if (weatherJSONObj == null)
+            return null;
+
+        String description = (String)weatherJSONObj.get("description");
+        if (description == null)
+            return null;
+        return description;
     }
 
     /**
@@ -73,17 +94,19 @@ public class Main {
             terminal.write(time);
 
             // Write the date in gray.
-            String date = DateTime.formatDate(cal);
-            terminal.setTextColor(AnsiTerminal.Color.WHITE, false);
-            terminal.moveTo(5, xPosition);
-            terminal.write(date);
+//                String date = DateTime.formatDate(cal);
+            //                terminal.setTextColor(AnsiTerminal.Color.WHITE, false);
+            //                terminal.moveTo(5, xPosition);
+            //                terminal.write(date);
 
             // Write the day of the week in green on a blue background.
             String dayOfWeek = DateTime.getDayOfWeekNames().get(cal.get(Calendar.DAY_OF_WEEK));
             terminal.setTextColor(AnsiTerminal.Color.GREEN);
             terminal.setBackgroundColor(AnsiTerminal.Color.BLUE);
-            terminal.moveTo(7, xPosition);
-            terminal.write("  " + dayOfWeek + "  ");
+            terminal.moveTo(7, xPosition-4);
+            //
+            String date = DateTime.formatDate(cal);
+            terminal.write(dayOfWeek+", "+date);
 
             // Set the background color back to black.
             terminal.setBackgroundColor(AnsiTerminal.Color.BLACK);
@@ -96,6 +119,16 @@ public class Main {
 
             // Pause for one second, and do it again.
             DateTime.pause(1.0);
+
+
+            //Hoshiko weather description
+
+            terminal.setTextColor(AnsiTerminal.Color.WHITE, false);
+            terminal.moveTo(11, xPosition - 2);
+            terminal.write(getWeatherDesc());
+
+
+
         }
     }
 }
