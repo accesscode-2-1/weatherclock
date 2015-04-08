@@ -31,8 +31,12 @@ public class AnsiTerminal {
         csi(Integer.toString(arg) + code);
     }
 
-    private void escape(int arg0, int arg1, char code) {
+    private void csi(int arg0, int arg1, char code) {
         csi(Integer.toString(arg0) + ';' + arg1 + code);
+    }
+
+    private void csi(int arg0, int arg1, int arg2, char code) {
+        csi(Integer.toString(arg0) + ';' + arg1 + ';' + arg2 + code);
     }
 
     private void sgr(int code) {
@@ -123,6 +127,16 @@ public class AnsiTerminal {
     }
 
     /**
+     * Sets the text color to an extended color code.
+     * @param colorCode
+     *   The extended color code, between 0 and 255.
+     */
+    public void setTextColor(int colorCode) {
+        assert 0 <= colorCode && colorCode < 256;
+        csi(38, 5, colorCode, 'm');
+    }
+
+    /**
      * Sets the background color.
      * @param color
      *   The color to use.
@@ -143,6 +157,16 @@ public class AnsiTerminal {
     }
 
     /**
+     * Sets the background color to an extended color code.
+     * @param colorCode
+     *   The extended color code, between 0 and 255.
+     */
+    public void setBackgroundColor(int colorCode) {
+        assert 0 <= colorCode && colorCode < 256;
+        csi(48, 5, colorCode, 'm');
+    }
+
+    /**
      * Moves the cursor to the specified location.
      * @param line
      *   The line number.  Lines are numbered from 1 starting at the top line and increasing downward.
@@ -150,7 +174,7 @@ public class AnsiTerminal {
      *   The column number.  Columns are numbered from 1 starting at the left column and increasing rightward.
      */
     public void moveTo(int line, int col) {
-        escape(line, col, 'H');
+        csi(line, col, 'H');
     }
 
     /**
