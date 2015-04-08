@@ -1,5 +1,26 @@
 #!/bin/bash
 
+function display_debug_banner(){
+echo ''
+echo '####################################################################################################'
+echo '$$$$$$$\            $$\                                                               $$\           '
+echo '$$  __$$\           $$ |                                                              $$ |          '
+echo '$$ |  $$ | $$$$$$\  $$$$$$$\  $$\   $$\  $$$$$$\        $$$$$$\$$$$\   $$$$$$\   $$$$$$$ | $$$$$$\  '
+echo '$$ |  $$ |$$  __$$\ $$  __$$\ $$ |  $$ |$$  __$$\       $$  _$$  _$$\ $$  __$$\ $$  __$$ |$$  __$$\ '
+echo '$$ |  $$ |$$$$$$$$ |$$ |  $$ |$$ |  $$ |$$ /  $$ |      $$ / $$ / $$ |$$ /  $$ |$$ /  $$ |$$$$$$$$ |'
+echo '$$ |  $$ |$$   ____|$$ |  $$ |$$ |  $$ |$$ |  $$ |      $$ | $$ | $$ |$$ |  $$ |$$ |  $$ |$$   ____|'
+echo '$$$$$$$  |\$$$$$$$\ $$$$$$$  |\$$$$$$  |\$$$$$$$ |      $$ | $$ | $$ |\$$$$$$  |\$$$$$$$ |\$$$$$$$\ '
+echo '\_______/  \_______|\_______/  \______/  \____$$ |      \__| \__| \__| \______/  \_______| \_______|'
+echo '                                        $$\   $$ |                                                  '
+echo '                                        \$$$$$$  |                                                  '
+echo '                                         \______/                                                   '
+echo ''
+echo "#####################################################################################################"
+echo "                          Waiting for you to attach to localhost:8998"
+echo "#####################################################################################################"
+
+}
+
 dir=$(dirname $0)
 classdir=$dir/out/production/weatherclock
 if ! [[ -d $classdir ]]; then
@@ -8,5 +29,11 @@ if ! [[ -d $classdir ]]; then
 fi
 
 export CLASSPATH=$classdir:lib/json_simple-1.1.jar
-exec java nyc.c4q.ac21.weatherclock.Main
 
+if [ "$1" == "debug" ]
+then
+   display_debug_banner
+   exec java -agentlib:jdwp=transport=dt_socket,address=8998,server=y,suspend=y nyc.c4q.ac21.weatherclock.Main
+else
+   exec java nyc.c4q.ac21.weatherclock.Main
+fi
