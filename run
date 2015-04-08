@@ -2,47 +2,54 @@
 
 # In order to start a remote debugging session, perform the following:
 
-# 1. First create a debug configuration in Intellij so that it knows how to connect to the running application
-#    You only have to do this once per project
+# 1. First create a debug configuration in Intellij so that it knows how to 
+#    connect to the running application. You only have to do this 
+#    once per project
 #
 # 2. Go to Run->Edit Configurations
-#    Click on the + sign on the upper left corner
-#    Select `Remote` from the drop down list
-#    In the name field, use the following:   'weatherclock remote debugging'
-#    Below the `name` field you will see a  `host` field so ensure that it is set to `localhost`
-#    Next to the `host` field you'll see the `port` field. Please use:  8998
-#    Click apply.
-#    Done. You don't need to repeat this step again unless you make a new project.
+#    - Click on the + sign on the upper left corner
+#    - Select `Remote` from the drop down list
+#    - In the name field, use the following:   'weatherclock remote debugging'
+#    - Below the `name` field you will see a  `host` field so ensure that it 
+#      is set to `localhost`
+#    - Next to the `host` field you'll see the `port` field. Please use:  8998
+#    - Click apply.
+#    - Done. You don't need to repeat this step again unless of course 
+#      you decide to make a new project.
 # 
-# 3. Before we start a remote debuggin session from intellij, we need to start up the application
-#    from the terminal like so   ./run debug   in which case you'll see the "debug mode" banner
-#    and the application will just wait for you to connect
+# 3. - Before we start a remote debugging session from intellij, we need to 
+#      start up the application from the terminal like so  ./run debug 
+#      in which case you'll see the "debug" banner and the application 
+#      will just wait for you to connect.
 #
-# 4. Now you can go over to intellij and click on Run->Debug 'weatherclock remote debugging'
-#    At this point, you are connected to the application and the application will stop if you set a breakpoint
-#    somewhere along its execution path.
+# 4. - Now you can go over to intellij and 
+#      click on Run->Debug 'weatherclock remote debugging'
+#    - At this point, you are connected to the application and 
+#      it will stop as soon as you set a breakpoint somewhere 
+#      along the execution path.
 #
-# 5. If you kill the application, go to intellij and make sure that you stop the debug session by clicking on Run->Stop
-#    Then go back to step 3 and start over again.
+# 5. - If you kill the application, go to intellij and make sure that you 
+#      stop the debug session by clicking on Run->Stop
+#    - Then go back to step 3 and start over again.
 
 function display_debug_banner(){
+   clear
+   echo '################################################################################'
    echo ''
-   echo '####################################################################################################'
-   echo '$$$$$$$\            $$\                                                               $$\           '
-   echo '$$  __$$\           $$ |                                                              $$ |          '
-   echo '$$ |  $$ | $$$$$$\  $$$$$$$\  $$\   $$\  $$$$$$\        $$$$$$\$$$$\   $$$$$$\   $$$$$$$ | $$$$$$\  '
-   echo '$$ |  $$ |$$  __$$\ $$  __$$\ $$ |  $$ |$$  __$$\       $$  _$$  _$$\ $$  __$$\ $$  __$$ |$$  __$$\ '
-   echo '$$ |  $$ |$$$$$$$$ |$$ |  $$ |$$ |  $$ |$$ /  $$ |      $$ / $$ / $$ |$$ /  $$ |$$ /  $$ |$$$$$$$$ |'
-   echo '$$ |  $$ |$$   ____|$$ |  $$ |$$ |  $$ |$$ |  $$ |      $$ | $$ | $$ |$$ |  $$ |$$ |  $$ |$$   ____|'
-   echo '$$$$$$$  |\$$$$$$$\ $$$$$$$  |\$$$$$$  |\$$$$$$$ |      $$ | $$ | $$ |\$$$$$$  |\$$$$$$$ |\$$$$$$$\ '
-   echo '\_______/  \_______|\_______/  \______/  \____$$ |      \__| \__| \__| \______/  \_______| \_______|'
-   echo '                                        $$\   $$ |                                                  '
-   echo '                                        \$$$$$$  |                                                  '
-   echo '                                         \______/                                                   '
+   echo '              $$$$$$$\            $$\                                 '
+   echo '              $$  __$$\           $$ |                                '
+   echo '              $$ |  $$ | $$$$$$\  $$$$$$$\  $$\   $$\  $$$$$$\        '
+   echo '              $$ |  $$ |$$  __$$\ $$  __$$\ $$ |  $$ |$$  __$$\       '
+   echo '              $$ |  $$ |$$$$$$$$ |$$ |  $$ |$$ |  $$ |$$ /  $$ |      '
+   echo '              $$ |  $$ |$$   ____|$$ |  $$ |$$ |  $$ |$$ |  $$ |      '
+   echo '              $$$$$$$  |\$$$$$$$\ $$$$$$$  |\$$$$$$  |\$$$$$$$ |      '
+   echo '              \_______/  \_______|\_______/  \______/  \____$$ |      '
+   echo '                                                      $$\   $$ |      '
+   echo '                                                      \$$$$$$  |      '
    echo ''
-   echo "#####################################################################################################"
-   echo "                          Waiting for you to attach to localhost:8998"
-   echo "#####################################################################################################"
+   echo '################################################################################'
+   echo '                          Waiting for you to attach to localhost:8998'
+   echo '################################################################################'
 }
 
 dir=$(dirname $0)
