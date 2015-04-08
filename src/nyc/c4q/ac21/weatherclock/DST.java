@@ -53,4 +53,19 @@ public class DST {
         return date.compareTo(dstStart) == 1 && date.compareTo(dstEnd) == -1;
     }
 
+    public static String isDSTEffect(Boolean date )
+    {
+        String notEffect="not in effect";
+        String inEffect = "in effect";
+
+        if (date==false){
+            return notEffect;
+        }
+        else{
+            return inEffect;
+        }
+    }
+
 }
+
+
