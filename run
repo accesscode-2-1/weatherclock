@@ -1,55 +1,44 @@
 #!/bin/bash
 
-# In order to start a remote debugging session, perform the following:
-
-# 1. First create a debug configuration in Intellij so that it knows how to 
-#    connect to the running application. You only have to do this 
-#    once per project
-#
-# 2. Go to Run->Edit Configurations
-#    - Click on the + sign on the upper left corner
-#    - Select `Remote` from the drop down list
-#    - In the name field, use the following:   'weatherclock remote debugging'
-#    - Below the `name` field you will see a  `host` field so ensure that it 
-#      is set to `localhost`
-#    - Next to the `host` field you'll see the `port` field. Please use:  8998
-#    - Click apply.
-#    - Done. You don't need to repeat this step again unless of course 
-#      you decide to make a new project.
-# 
-# 3. - Before we start a remote debugging session from intellij, we need to 
-#      start up the application from the terminal like so  ./run debug 
-#      in which case you'll see the "debug" banner and the application 
-#      will just wait for you to connect.
-#
-# 4. - Now you can go over to intellij and 
-#      click on Run->Debug 'weatherclock remote debugging'
-#    - At this point, you are connected to the application and 
-#      it will stop as soon as you set a breakpoint somewhere 
-#      along the execution path.
-#
-# 5. - If you kill the application, go to intellij and make sure that you 
-#      stop the debug session by clicking on Run->Stop
-#    - Then go back to step 3 and start over again.
-
-function display_debug_banner(){
+function display_instructions(){
    clear
-   echo '################################################################################'
-   echo ''
-   echo '              $$$$$$$\            $$\                                 '
-   echo '              $$  __$$\           $$ |                                '
-   echo '              $$ |  $$ | $$$$$$\  $$$$$$$\  $$\   $$\  $$$$$$\        '
-   echo '              $$ |  $$ |$$  __$$\ $$  __$$\ $$ |  $$ |$$  __$$\       '
-   echo '              $$ |  $$ |$$$$$$$$ |$$ |  $$ |$$ |  $$ |$$ /  $$ |      '
-   echo '              $$ |  $$ |$$   ____|$$ |  $$ |$$ |  $$ |$$ |  $$ |      '
-   echo '              $$$$$$$  |\$$$$$$$\ $$$$$$$  |\$$$$$$  |\$$$$$$$ |      '
-   echo '              \_______/  \_______|\_______/  \______/  \____$$ |      '
-   echo '                                                      $$\   $$ |      '
-   echo '                                                      \$$$$$$  |      '
-   echo ''
-   echo '################################################################################'
-   echo '                          Waiting for you to attach to localhost:8998'
-   echo '################################################################################'
+
+   echo "################################################################################"
+   echo " In order to start a remote debugging session, perform the following:"
+   echo " 1. - First create a debug configuration in Intellij so that it knows how to "
+   echo "      connect to the standalone running application. You only have to do this "
+   echo "      once per project *IMPORTANT*"
+   echo "    - Go to Run->Edit Configurations"
+   echo "    - Click on the + sign on the upper left corner"
+   echo "    - Select 'Remote' from the drop down list"
+   echo "    - In the 'name' field, use the following: 'weatherclock remote debugging'"
+   echo "    - Below the 'name' field you will see a 'host' field, ensure that it "
+   echo "      is set to 'localhost'"
+   echo "    - Next to the 'host' field you'll see the 'port' field. Please use: '8998'"
+   echo "    - Click apply."
+   echo "    - Done. You don't need to repeat this step again unless of course "
+   echo "      you decide to make a new project."
+   echo "" 
+   echo " 2. - Before we start a remote debugging session from Intellij, we need to" 
+   echo "      start up the application from the terminal like so  ./run debug "
+   echo "      in which case you'll see that the application will just wait "
+   echo "      for you to connect on port 8998"
+   echo ""
+   echo " 3. - Now you can go over to Intellij and" 
+   echo "      click on Run->Debug 'weatherclock remote debugging'"
+   echo "    - At this point, you should be connected to your standalone"
+   echo "      application. You'll be able to pause and step through it as "
+   echo "      soon as you set a breakpoint somewhere along the execution path."
+   echo ""
+   echo " 4. - If you decide to kill the standalone application, ensure that "
+   echo "      you go back to Intellij and stop the debug session by clicking"
+   echo "      on Run->Stop"
+   echo "    - If you wish to start another debug session, then go back to "
+   echo "      step 2 and start over again."
+   echo "################################################################################"
+   echo "                  Waiting for you to attach to localhost:8998"
+   echo "################################################################################"
+
 }
 
 dir=$(dirname $0)
@@ -63,7 +52,7 @@ export CLASSPATH=$classdir:lib/json_simple-1.1.jar
 
 if [ "$1" == "debug" ]
 then
-   display_debug_banner
+   display_instructions
    exec java -agentlib:jdwp=transport=dt_socket,address=8998,server=y,suspend=y nyc.c4q.ac21.weatherclock.Main
 else
    exec java nyc.c4q.ac21.weatherclock.Main
