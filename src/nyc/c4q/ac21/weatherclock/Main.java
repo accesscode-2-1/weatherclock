@@ -26,6 +26,25 @@ public class Main {
             return null;
         return DateTime.fromTimestamp(sunsetTimestamp);
     }
+    /**
+     * Weather description by Hoshiko
+     */
+    public static String getWeatherDesc() {
+        //URL url = HTTP.stringToURL("http://api.openweathermap.org/data/2.5/weather?q=New%20York,NY");
+        URL url = HTTP.stringToURL("http://api.openweathermap.org/data/2.5/weather?id=5128581");
+        String doc = HTTP.get(url);
+        JSONObject obj = (JSONObject) JSONValue.parse(doc);
+        JSONArray weatherJSONArray = (JSONArray)obj.get("weather");
+        JSONObject weatherJSONObj = (JSONObject) weatherJSONArray.get(0);
+
+        if (weatherJSONObj == null)
+            return null;
+
+        String description = (String)weatherJSONObj.get("description");
+        if (description == null)
+            return null;
+        return description;
+    }
 
     /**
      * SAMPLE CODE: Displays a very primitive clock.
@@ -101,8 +120,15 @@ public class Main {
             // Pause for one second, and do it again.
             DateTime.pause(1.0);
 
-            //JSONParser parser =new JSONParser();
-            //JSONObject weather_json_obj = (JSONObject)parser.parse(new FileReader("/Users/Hoshiko/Desktop/accesscode/weatherclock/json-files/weather.json"));
+
+            //Hoshiko weather description
+
+            terminal.setTextColor(AnsiTerminal.Color.WHITE, false);
+            terminal.moveTo(11, xPosition - 2);
+            terminal.write(getWeatherDesc());
+
+
+
         }
     }
 }
